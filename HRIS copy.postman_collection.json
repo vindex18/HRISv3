@@ -1,0 +1,319 @@
+{
+	"info": {
+		"_postman_id": "88ef09db-aa90-4eec-a14f-1498546455f4",
+		"name": "HRIS copy",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Adding Employee Record",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "firstname",
+							"value": "Ivan Roir",
+							"type": "text"
+						},
+						{
+							"key": "lastname",
+							"value": "Bruselas",
+							"type": "text"
+						},
+						{
+							"key": "phone",
+							"value": "0945-362-7267",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "ivan@invento.io",
+							"type": "text"
+						},
+						{
+							"key": "address",
+							"value": "Las Piñas",
+							"type": "text"
+						},
+						{
+							"key": "postitle",
+							"value": "Junior Web Developer",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "qwerty",
+							"type": "text"
+						},
+						{
+							"key": "middlename",
+							"value": "Reyes",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost/hris/public/employee/addemployee",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"hris",
+						"public",
+						"employee",
+						"addemployee"
+					]
+				},
+				"description": "Adding Employee Record"
+			},
+			"response": []
+		},
+		{
+			"name": "Get Employee Record",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "localhost/hris/public/employee/employeerecord/Mg%3D%3D",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"hris",
+						"public",
+						"employee",
+						"employeerecord",
+						"Mg%3D%3D"
+					]
+				},
+				"description": "Getting Employee Record"
+			},
+			"response": []
+		},
+		{
+			"name": "Validating Employee Login",
+			"request": {
+				"auth": {
+					"type": "bearer"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "email",
+							"value": "neil@invento.io",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "qwerty",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost/hris/public/authorization/validatecredentials",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"hris",
+						"public",
+						"authorization",
+						"validatecredentials"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Root Testing Middleware",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "localhost/hris/public/",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"hris",
+						"public",
+						""
+					]
+				},
+				"description": "Root Testing for Middleware Flow"
+			},
+			"response": []
+		},
+		{
+			"name": "Get All Employee Record",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "localhost/hris/public/employee/allemployee/",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"hris",
+						"public",
+						"employee",
+						"allemployee",
+						""
+					]
+				},
+				"description": "Getting All Employee Record"
+			},
+			"response": []
+		},
+		{
+			"name": "Attendance All EMP",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "localhost/hris/public/attendance/allemployeeattendance/1527782400/1530374400/1",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"hris",
+						"public",
+						"attendance",
+						"allemployeeattendance",
+						"1527782400",
+						"1530374400",
+						"1"
+					]
+				},
+				"description": "Get All Attendance"
+			},
+			"response": []
+		},
+		{
+			"name": "Attendance EMP",
+			"request": {
+				"auth": {
+					"type": "bearer"
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "localhost/hris/public/attendance/employeeattendance/1527782400/1530374400/MQ%3D%3D",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"hris",
+						"public",
+						"attendance",
+						"employeeattendance",
+						"1527782400",
+						"1530374400",
+						"MQ%3D%3D"
+					]
+				},
+				"description": "attendance/getallemployeeattendance"
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Attendance EMP",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "localhost/hris/public/attendance/employeeattendance/10",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"hris",
+						"public",
+						"attendance",
+						"employeeattendance",
+						"10"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Employee",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "localhost/hris/public/employee/employeerecord/Mg%3D%3D",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"hris",
+						"public",
+						"employee",
+						"employeerecord",
+						"Mg%3D%3D"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Excel All EMP Attendance",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost/hris/public/reports/attendance/attendancereport/toexcel/1528646400/1528732800/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"hris",
+						"public",
+						"reports",
+						"attendance",
+						"attendancereport",
+						"toexcel",
+						"1528646400",
+						"1528732800",
+						""
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
