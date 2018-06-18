@@ -11,17 +11,8 @@ class AttendanceDao {
         
     }
 
-    function getMinTimeInBetweenDatetime($from, $to, $emp_id){
-        //DB::connection()->enableQueryLog();
-        return DB::table('attendance as a')
-                        ->select(DB::raw('MIN(datetime) as date'))
-                        ->where('emp_id', $emp_id)
-                        ->where('type_id', 1)
-                        ->whereBetween('datetime', [$from, $to])
-                        ->orderBy('datetime', 'ASC')
-                        ->get()
-                        ->toArray();
-        //$queries = DB::getQueryLog(); var_dump($queries); die("End of Query");
+    function addAttendance($type_id, $emp_id, $datetime){
+        
     }
 
     function getDistinctDateAttendanceOfEmployee($from, $to, $emp_id){
@@ -33,153 +24,41 @@ class AttendanceDao {
                         ->orderBy('datetime', 'ASC')
                         ->get()
                         ->toArray();
-        //$queries = DB::getQueryLog(); var_dump($queries); die("End of Query");
+        //  $queries = DB::getQueryLog(); var_dump($queries); die("End of Query");
     }
-
-    function traverseRecords($data, $start_code, $start_datetime, $datetime, $ti, $to, $seq, $seqtime){
-
-        $rec = array();
-        //Normal Seq
-        echo "<br>NORMAL Sequential<br>";
-        for($c=0;$c<count($data);$c++){
-            echo $data[$c]->code." - ".date('M d, Y g:i A', strtotime($data[$c]->datetime))."<br>";
-        }
-        //Trace Seq
-        echo "<br>Sequential TI-TO<br>";
-        for($c=0;$c<count($seqtime);$c++){
-            echo $seq[$c]." - ".date('M d, Y g:i A', strtotime($seqtime[$c]))."<br>";
-        }
-
-        echo "<br>Calculating......<br>";
-
-        for($c=0;$c<count($seqtime);$c++){
-            $f = strtotime($seqtime[$c]);
-            echo date('M d, Y g:i A', strtotime($seqtime[$c]))." - ".$seq[$c]." - ";
-          
-            if(array_key_exists($c+1, $seqtime)){
-                $fs = $seq[$c];
-                $sc = $seq[$c+1];
-                if($fs=="TI"&&$sc=="TO"){
-                    // $grpseq[$c] = [$fs, $sc];
-                    // $grptime[$c] = [$seqtime[$c], $seqtime[$c+1]];
-                    echo " OK ";
-                }else{
-                    if($fs!="TI")
-                        
-
-                    if($sc!="TO")
-                }
-
-                $t = strtotime($seqtime[$c+1]);
-                $diff = $t - $f;
-                $diff = AttendanceDao::convertTime($diff);
-                echo "- DIFFERENCE: ".($diff)."<br>"; 
-                echo $fs." - ".$sc."<br>";   
-            }
-        }
-        
-        //echo "<br><br>----------TIME DIFF---------------------<br>";
-        //echo "<br>Total Hours: ".$total->diff($sum)->format('%h Hr %i Min %s Sec'); //%y Years %m Months %d Days 
-        //return $total->diff($sum)->format('%h Hours %i Minutes %s Seconds');
-        //echo "<br>".date('Y-m-j', strtotime('3 weekdays')); die(); I can use this function
-        //echo "<br>Total Hours: ".$total->diff($sum)->format('%y Years %m Months %d Days %h Hours %i Minutes %s Seconds');
-        die('<br>--------------------------------');    
-    }
-
-    function convertTime($s) { 
-        $m = 0; $hr = 0; $td = "now";
-
-        if($s > 59){ 
-            $m = (int)($s/60); 
-            $s = $s-($m*60); // sec left over 
-            $td = "$m min"; 
-        } 
-
-        if($m>59){ 
-            $hr = (int)($m / 60); 
-            $m = $m - ($hr*60); // min left over 
-            $td = "$hr hr"; 
-            if($hr > 1) 
-                $td .= "s";
-            
-            if($m > 0) 
-                $td .= ", $m min";
-        } 
-    
-        return $td; 
-    } 
 
     function getEmployeeAttendance($from, $to, $emp_id){
-
-        //Select MIN (TI) between 2 dates
-        //$start = AttendanceDao::getMinTimeInBetweenDatetime($from, $to, $emp_id);
+        $distnctdate = AttendanceDao::getDistinctDateAttendanceOfEmployee($from, $to, $emp_id);
         
-        $data = DB::table('employees AS e')
-                    ->select('e.first_name', 'e.last_name', 'e.is_active', 'e.pos_title', 'a.datetime', 'a.emp_id', 't.code', 't.description')
-                    ->leftJoin('attendance AS a' , 'e.id', '=', 'a.emp_id')
-                    ->leftJoin('attendancetype as t', 'a.type_id', '=', 't.id')
-                    ->where('e.id', '=', $emp_id)
-                    ->whereBetween('datetime', [$from, $to])
-                    ->orderBy('datetime', 'ASC')
-                    ->get()
-                    ->toArray();
+        for($a=0;$a<count($distnctdate);$a++){
+            //DB::connection()->enableQueryLog();
+            $data[$a] = DB::table('employees AS e')
+                        ->select('e.first_name', 'e.last_name', 'e.is_active', 'e.pos_title', 'a.datetime', 'a.emp_id', 't.code', 't.description')
+                        ->leftJoin('attendance AS a' , 'e.id', '=', 'a.emp_id')
+                        ->leftJoin('attendancetype as t', 'a.type_id', '=', 't.id')
+                        ->where('e.id', '=', $emp_id)
+                        ->whereDate('a.datetime', $distnctdate[$a]->date)
+                        ->orderBy('datetime', 'ASC')
+                        ->get()
+                        ->toArray();
+        }
+            //$queries = DB::getQueryLog(); var_dump($queries); die("End of Query");    
+          
+            echo "Employee Name: <b>".$data[0][0]->last_name.", ".$data[0][0]->first_name."</b><br>Position: <b>".$data[0][0]->pos_title."</b><br><br><strong>Attendance Record</strong><br>----------------------------<br><br>****************************<br>";
+            for($a=0;$a<count($data);$a++){ //distinct date
 
-        $ti = $to = $datetime = $seq = $seqtime = $preset = array();
-        $brkincount = $brkoutcount = 0;
-
-        for($c=0;$c<count($data);$c++){
-            //check ti to to
-            echo $data[$c]->code." - ".date('M d, Y g:i A', strtotime($data[$c]->datetime))."<br>";
-
-            $datetime[$c] = $data[$c]->datetime;
-            $preset[$c] = $data[$c]->code;
-
-            if($data[$c]->code=="TI"||$data[$c]->code=="TO"){
-                $seq[] = $data[$c]->code;
-                $seqtime[] = $data[$c]->datetime;
+                    //check if punch completed
+                    echo "<i>".date('M d, Y g:i A', strtotime($data[$a][0]->datetime))."</i><br>";
+                    $stat[$a] = AttendanceDao::checkIfPunchComplete($data[$a], $emp_id);
+        
+                echo "<br>****************************<br>";
             }
-
-            ($data[$c]->code=="BI") ? $brkincount++ : null;
-    
-            ($data[$c]->code=="BO") ? $brkoutcount++ : null;
-
-            if($data[$c]->code=="TI")
-                $ti[$c] = $data[$c]->datetime;
-
-            if($data[$c]->code=="TO")
-                $to[$c] = $data[$c]->datetime;
-        }
-
-        echo "<br>BRK-OUT-COUNT: ".$brkincount."<br>BRK-IN-COUNT: ".$brkoutcount."<br>"; 
-        echo "TIME-IN COUNT: ".count($ti)."<br>TIME-OUT COUNT: ".count($to)."<br><br>";
-
-        //*** DEFICIENCY -> DECLARE INCOMPLETE 
-
-        if(!is_null($data)){
-            $start_code = $data[0]->code;
-            $start_datetime = $data[0]->datetime;
-
-            //Traversing Through Records 
-            AttendanceDao::traverseRecords($data, $start_code, $start_datetime, $datetime, $ti, $to, $seq, $seqtime);
-        }
-
-        // //TEMP
-        // if($brkincount!=$brkoutcount||count($ti)!=count($to)){
-        //     echo "<u>Incomplete Record</u><br><br>";
-        //     echo "<br>Total Hours: Incomplete Record"; die();
-        // }else{
-        //     echo "<br>Complete";
-        // }
-        // //TEMP
-
-        //Debugging
-        echo "<br><br>-----FOR DEBUGGING---------<br>";
-        for($c=0;$c<count($datetime);$c++){
-            echo $datetime[$c]." - ".$preset[$c]."<br>";
-        }
-    
-        die('');
+            
+            //var_dump($stat); 
+            die('----------End of Result-------------');
+        
     }
+
 
     function checkIfPunchComplete($data, $emp_id){ //Checking One Day if completed
         //Declared to be constant

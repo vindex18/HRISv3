@@ -7,8 +7,7 @@ use App\Utils\Validator;
 use \Datetime;
 use \Firebase\JWT\JWT;
 use \Tuupola\Base62;
-use App\Middleware\AuthMiddleware;
-
+use App\Middleware\Auth;
 
 class AuthService {
     function validatecredentials($req, $res){
@@ -46,26 +45,30 @@ class AuthService {
 
     function generate_jwt($req, $res, $email){
         $now = new DateTime();
-        $future = new DateTime("now +2 hours");
+        //$future = new DateTime("now +2 hours");
+        $future = new DateTime("now +1 day");
         //$server = $req->getServerParams();
         //var_dump($req); die();
         $base62 = new \Tuupola\Base62;
+
         $payload = [
             'iat' => $now->getTimeStamp(), //issued at
+            //'exp' => $now->createFromFormat('d/m/Y H:i:s', '23/05/2013'), 
             'exp' => $future->getTimeStamp(), //expiration
             'jti' => $base62->encode(random_bytes(32)), //json token id
             'sub' => $email, //subject
             'iss' => $base62->encode("invento-hris") //issuer
         ];
 
-        $secret = AuthMiddleware::jwtSecret();
+        $secret = Auth::jwtSecret();
+        return JWT::encode($payload, $secret, "HS256");
         /*$jwt = JWT::encode($payload, $secret, "HS256");
         $decoded = JWT::decode($jwt, $secret, array('HS256'));
 
         print_r($decoded);
         die();*/
 
-        return array(JWT::encode($payload, $secret, "HS256"), 'expires' => $future->getTimeStamp());
+       
     }
 
 }
