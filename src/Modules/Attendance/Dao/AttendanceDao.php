@@ -137,7 +137,7 @@ class AttendanceDao {
     }
 
     function getLastPunch($emp_id){
-         return DB::table('attendance as a')
+         return DB::table('attendance')
                     ->select('datetime', 'type_id')
                     ->where('emp_id', $emp_id)
                     ->orderBy('datetime', 'DESC')
@@ -233,6 +233,24 @@ class AttendanceDao {
     }
 
     function getEmployeeAttendance($from, $to, $emp_id){
+        $min_time_in = AttendanceDao::getMinTimeIn($from, $to, $emp_id);
+        $max_time_in = AttendanceDao::getMaxTimeOut($from, $to, $emp_id);
+
+        return DB::table('attendance as a')
+                ->select('a.datetime', 'a.type_id', 't.code', 't.description')
+                ->leftJoin('attendancetype as t', 'a.type_id', '=', 't.id')
+                ->where('emp_id', $emp_id)
+                ->whereBetween('datetime', [$min_time_in[0]->datetime, $max_time_in])
+                ->orderBy('datetime', 'DESC')
+                ->get()
+                ->toArray();
+    }
+
+    function deleteEmployeeAttendance($att_id){
+        return AttendanceModel::where('id', $att_id)->delete();
+    }
+
+    function getEmployeeAttendanceSummary($from, $to, $emp_id){
 
         /* Check if has lapse
         Start with TI and in TO of the last day even with lapse*/
@@ -240,7 +258,8 @@ class AttendanceDao {
         $min_time_in = AttendanceDao::getMinTimeIn($from, $to, $emp_id);
         $max_time_in = AttendanceDao::getMaxTimeOut($from, $to, $emp_id);
 
-        //echo $min_time_in." ".$max_time_in."<br>";
+        echo "MIN-TIME-IN: ".date('M d, Y g:i A', strtotime($min_time_in[0]->datetime))." ==== LAST-POSSIBLE: ".date('M d, Y g:i A', strtotime($max_time_in))."<br>";
+        //echo " ".$max_time_in."<br>"; die();
         //var_dump($min_time_in); die();
 
         //DB::connection()->enableQueryLog();
@@ -250,14 +269,14 @@ class AttendanceDao {
                     ->leftJoin('attendancetype as t', 'a.type_id', '=', 't.id')
                     ->where('e.id', '=', $emp_id)
                     //->whereBetween('DATE(datetime) as datetime', [$from, $to])
-                    ->where('datetime', '>', $min_time_in[0]->datetime) //$from
-                    ->where('datetime', '<', $max_time_in) //$to
+                    ->where('datetime', '>=', $min_time_in[0]->datetime) //$from
+                    ->where('datetime', '<=', $max_time_in) //$to
                     ->orderBy('datetime', 'ASC')
                     ->get()
                     ->toArray();
         //$queries = DB::getQueryLog(); var_dump($queries); die("End of Query");
         //var_dump($data); die();
-        $ti = $to = $seq = $seqtime = array();
+        $seq = $seqtime = array();
 
         $brkincount = $brkoutcount = 0;
 

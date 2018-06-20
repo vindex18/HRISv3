@@ -13,6 +13,7 @@ class AuthController {
 
     public function validatecredentials(Request $req, Response $res){
         //return $res->withJSON(AuthService::validatecredentials($req, $res), 201);
-        return var_dump(AuthService::validatecredentials($req, $res));
+        
+        return $res->withJSON(AuthService::validatecredentials($req, $res));
     }
 }

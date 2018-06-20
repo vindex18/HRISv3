@@ -11,18 +11,23 @@ class AttendanceController {
     }
 
     function addAttendance(Request $req, Response $res){
-        return var_dump(AttendanceService::addAttendance($req, $res));
+        return $res->withJSON(AttendanceService::addAttendance($req, $res));
     }
 
     function getEmployeeAttendance(Request $req, Response $res, $args){
-        return var_dump(AttendanceService::getEmployeeAttendance($req, $res));
+        return $res->withJSON(AttendanceService::getEmployeeAttendance($req, $res));
     }
 
     function deleteEmployeeAttendance(Request $req, Response $res, $args){
-        return var_dump(AttendanceService::deleteEmployeeAttendance($req, $res));
+        return $res->withJSON(AttendanceService::deleteEmployeeAttendance($req, $res));
     }
 
     function getAllEmployeeAttendance(Request $req, Response $res, $args){
-        return var_dump(AttendanceService::getAllEmployeeAttendance($req, $res));
+        return $res->withJSON(AttendanceService::getAllEmployeeAttendance($req, $res));
     }
+
+    function getEmployeeAttendanceSummary(Request $req, Response $res){
+        return $res->withJSON(AttendanceService::getEmployeeAttendanceSummary($req, $res));
+    }
+        
 }

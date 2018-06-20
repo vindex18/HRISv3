@@ -11,33 +11,35 @@ use App\Middleware\Auth;
 
 class AuthService {
     function validatecredentials($req, $res){
+        //return $req->getParams(); 
+        //return $req->getParam('email');
+
         $validation = Validator::validate($req, [
-            'password' => v::noWhitespace()->notEmpty()->length(6, null),
             'email' => v::noWhitespace()->notEmpty()->email(),
+            'password' => v::noWhitespace()->notEmpty()->length(6, null),
         ]); 
         
         if(!is_null($validation))
-            //var_dump($validation);
             return $validation;
             
         $userexists = AuthModel::where('email', '=', strip_tags($req->getParam('email')))->first();
 
         if(is_null($userexists))
-            return array('status' => 'val_error', 'msg' => 'Email doesn\'t exists!', 'tk' => '');
+            return array('status' => false, 'msg' => 'Email doesn\'t exists!', 'tk' => '');
         else{
             if($userexists->is_active)
             {
                 if(password_verify(strip_tags($req->getParam('password')), $userexists->password))
                     //var_dump('User Authentication Succeeded!'); 
-                    return array('status' => 'success', 'msg' => 'Auth Success', 'tk' => AuthService::generate_jwt($req, $res, $userexists->email));
+                    return array('status' => true, 'msg' => 'Auth Success', 'tk' => AuthService::generate_jwt($req, $res, $userexists->email));
                 else
                     //var_dump("User Authentication Failed!");
-                    return array('status' => 'failed', 'msg' => 'Incorrect Email/Password!', 'tk' => '');
+                    return array('status' => false, 'msg' => 'Incorrect Email/Password!', 'tk' => '');
             }
             else
             {
                 //var_dump('User Account Deactivated');
-                return array('status' => 'deactivated', 'msg' => 'Account Deactivated! Contact The Administrator!', 'tk' => ''); 
+                return array('status' => false, 'msg' => 'Account Deactivated! Contact The Administrator!', 'tk' => ''); 
             }
         }
     }
@@ -45,7 +47,7 @@ class AuthService {
     function generate_jwt($req, $res, $email){
         $now = new DateTime();
         //$future = new DateTime("now +2 hours");
-        $future = new DateTime("now +1 day");
+        $future = new DateTime("now +2 months"); //+1 day
         $base62 = new \Tuupola\Base62;
 
         $payload = [

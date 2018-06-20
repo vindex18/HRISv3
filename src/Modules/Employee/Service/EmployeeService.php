@@ -19,11 +19,15 @@ class EmployeeService {
                 $accstat = "is_active = ".$accstat : $accstat = "is_active = 0" : $accstat = "is_active IS NOT NULL" ;
 
         return EmployeeDao::getAllEmployee($accstat);
+        //return $req->getHeader('Authorization')[0];
+        //return (isset($req->getHeader('Authorization')[0]));
+        // $authorization = explode(".", $req->getHeader('Authorization')[0]);
+        // $token = $authorization[1];
+        // return "THIS IS".$token;
     }
 
     function deleteEmployee($req, $res){
         $emp_id = base64_decode(urldecode($req->getAttribute('str')));
-
         return (is_numeric($emp_id)) ? EmployeeDao::deleteEmployee($emp_id) : null;
     }
 
