@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.0.1
+-- version 4.7.7
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 20, 2018 at 12:06 AM
--- Server version: 10.1.32-MariaDB
--- PHP Version: 7.2.5
+-- Generation Time: Jun 20, 2018 at 08:10 AM
+-- Server version: 10.1.30-MariaDB
+-- PHP Version: 7.2.2
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -101,18 +101,19 @@ CREATE TABLE `employees` (
   `is_admin` tinyint(1) NOT NULL DEFAULT '0',
   `created_at` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,
-  `is_active` tinyint(1) NOT NULL DEFAULT '0'
+  `is_active` tinyint(1) NOT NULL DEFAULT '0',
+  `datejoined` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `employees`
 --
 
-INSERT INTO `employees` (`id`, `first_name`, `middle_name`, `last_name`, `phone`, `email`, `address`, `pos_title`, `password`, `is_admin`, `created_at`, `updated_at`, `is_active`) VALUES
-(1, 'Neil Daryl', 'Reyes', 'Sulit', '0945-362-7267', 'neil@invento.io', '667 Sucat, Muntinlupa City', 'Junior Web Developer', '$2y$10$Ry6TpxJLv9Re4swyS.9FDO.NWy3ettYe4JPhg3F5UqDT3T6XKwhS6', 0, '2018-06-10 11:05:19', '2018-06-10 11:05:19', 1),
-(2, 'Ivan Roir', '', 'Bruselas', '0945-362-7267', 'ivan@invento.io', 'Las Piñas', 'Junior Web Developer', '$2y$10$dA6.0kpb6W.qUuo2XSI/1.xDDzrJBPX2bfJJWizoso6G7c25KjZsu', 0, '2018-06-19 16:02:55', '2018-06-19 16:02:55', 1),
-(3, 'Jan Myckel', 'Labayog', 'Perez', '0929-208-6707', 'jan@invento.io', 'Las Piñas City', 'Junior Web Developer', '$2y$10$vNMFaglzTx1TMvmIBWmGweMSpXtmiWTaqXJ7lxXZQJDPAaA9aW0me', 0, '2018-06-13 10:46:02', '2018-06-13 10:46:02', 1),
-(4, 'Camille Franchesca', '', 'Cuisa', '0912-345-6789', 'camille@invento.io', 'Las Piñas', 'Web Designer', '$2y$10$lrCXwl1J1gTVWi7lgOBuNehG6cLkdCHPkdG1i9UyYKrrB0UFoumha', 0, '2018-06-19 15:20:42', '2018-06-19 15:20:42', 1);
+INSERT INTO `employees` (`id`, `first_name`, `middle_name`, `last_name`, `phone`, `email`, `address`, `pos_title`, `password`, `is_admin`, `created_at`, `updated_at`, `is_active`, `datejoined`) VALUES
+(1, 'Neil Daryl', 'Reyes', 'Sulit', '0945-362-7267', 'neil@invento.io', '667 Sucat, Muntinlupa City', 'Junior Web Developer', '$2y$10$Ry6TpxJLv9Re4swyS.9FDO.NWy3ettYe4JPhg3F5UqDT3T6XKwhS6', 0, '2018-06-10 11:05:19', '2018-06-10 11:05:19', 1, '2018-06-04'),
+(2, 'Ivan Roir', '', 'Bruselas', '0945-362-7267', 'ivan@invento.io', 'Las Piñas', 'Junior Web Developer', '$2y$10$PEh822mrby5W3A0cvqJWt.dNBLCLLfYuQ67TXGwOMpNsWlDGWIcDe', 0, '2018-06-20 10:20:44', '2018-06-20 10:20:44', 1, '2018-06-04'),
+(3, 'Jan Myckel', 'Labayog', 'Perez', '0929-208-6707', 'jan@invento.io', 'Las Piñas City', 'Junior Web Developer', '$2y$10$vNMFaglzTx1TMvmIBWmGweMSpXtmiWTaqXJ7lxXZQJDPAaA9aW0me', 0, '2018-06-13 10:46:02', '2018-06-13 10:46:02', 1, '2018-06-11'),
+(4, 'Camille Franchesca', '', 'Cuisa', '0912-345-6789', 'camille@invento.io', 'Las Piñas', 'Web Designer', '$2y$10$lrCXwl1J1gTVWi7lgOBuNehG6cLkdCHPkdG1i9UyYKrrB0UFoumha', 0, '2018-06-19 15:20:42', '2018-06-19 15:20:42', 1, '2018-06-18');
 
 -- --------------------------------------------------------
 
@@ -178,7 +179,7 @@ ALTER TABLE `attendancetype`
 -- AUTO_INCREMENT for table `employees`
 --
 ALTER TABLE `employees`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `revoked_tokens`

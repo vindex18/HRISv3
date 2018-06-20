@@ -12,19 +12,23 @@
 				"header": [
 					{
 						"key": "Authorization",
-						"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1MjkzNjk2NTEsImV4cCI6MTUyOTQ1NjA1MSwianRpIjoic2pvVlhzaUxkVlE3bENkVE0zTHBFUzlFc2pnUzlaWDJibVpSSlg0U0hJViIsInN1YiI6Im5laWxAaW52ZW50by5pbyIsImlzcyI6ImdSMjNabzFFWDBrOGJQT2QifQ.ISNgk4QykprDCLOch2n_oUN5ssWp6IyjoiOXyv9M2zk"
+						"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1Mjk0NTYyNTUsImV4cCI6MTUzNDcyNjY1NSwianRpIjoibTVrVUoyblY5eGlGN1pFZUltamp0OEUxUWkzSDQ0QlZlUjhRenVhTXdCYSIsInN1YiI6Im5laWxAaW52ZW50by5pbyIsImlzcyI6ImdSMjNabzFFWDBrOGJQT2QifQ.nAdhs3cyHj_Akj28qNFa8P2Ip1PdYtEUNPUKqhmiUHY"
 					}
 				],
 				"body": {},
 				"url": {
-					"raw": "localhost/hris/public/employee",
+					"raw": "http://192.168.1.106/hris/public/employees",
+					"protocol": "http",
 					"host": [
-						"localhost"
+						"192",
+						"168",
+						"1",
+						"106"
 					],
 					"path": [
 						"hris",
 						"public",
-						"employee"
+						"employees"
 					]
 				}
 			},
@@ -37,7 +41,7 @@
 				"header": [
 					{
 						"key": "Authorization",
-						"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1MjkzNjk2NTEsImV4cCI6MTUyOTQ1NjA1MSwianRpIjoic2pvVlhzaUxkVlE3bENkVE0zTHBFUzlFc2pnUzlaWDJibVpSSlg0U0hJViIsInN1YiI6Im5laWxAaW52ZW50by5pbyIsImlzcyI6ImdSMjNabzFFWDBrOGJQT2QifQ.ISNgk4QykprDCLOch2n_oUN5ssWp6IyjoiOXyv9M2zk"
+						"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1Mjk0NTYyNTUsImV4cCI6MTUzNDcyNjY1NSwianRpIjoibTVrVUoyblY5eGlGN1pFZUltamp0OEUxUWkzSDQ0QlZlUjhRenVhTXdCYSIsInN1YiI6Im5laWxAaW52ZW50by5pbyIsImlzcyI6ImdSMjNabzFFWDBrOGJQT2QifQ.nAdhs3cyHj_Akj28qNFa8P2Ip1PdYtEUNPUKqhmiUHY"
 					}
 				],
 				"body": {
@@ -68,7 +72,7 @@
 				"header": [
 					{
 						"key": "Authorization",
-						"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1MjkzNjk2NTEsImV4cCI6MTUyOTQ1NjA1MSwianRpIjoic2pvVlhzaUxkVlE3bENkVE0zTHBFUzlFc2pnUzlaWDJibVpSSlg0U0hJViIsInN1YiI6Im5laWxAaW52ZW50by5pbyIsImlzcyI6ImdSMjNabzFFWDBrOGJQT2QifQ.ISNgk4QykprDCLOch2n_oUN5ssWp6IyjoiOXyv9M2zk"
+						"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1Mjk0NTYyNTUsImV4cCI6MTUzNDcyNjY1NSwianRpIjoibTVrVUoyblY5eGlGN1pFZUltamp0OEUxUWkzSDQ0QlZlUjhRenVhTXdCYSIsInN1YiI6Im5laWxAaW52ZW50by5pbyIsImlzcyI6ImdSMjNabzFFWDBrOGJQT2QifQ.nAdhs3cyHj_Akj28qNFa8P2Ip1PdYtEUNPUKqhmiUHY"
 					}
 				],
 				"body": {
@@ -134,15 +138,11 @@
 		{
 			"name": "Validating Employee Login",
 			"request": {
-				"auth": {
-					"type": "bearer"
-				},
 				"method": "POST",
 				"header": [
 					{
 						"key": "Authorization",
-						"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1MjkyOTgwOTksImV4cCI6MTUyOTMwNTI5OSwianRpIjoic0hTUWRQREJ2d3U2NWpqUDQ1Q3hoWVpEUHdjbjZlYXRwcUtRVGpPSmdrYyIsInN1YiI6Im5laWxAaW52ZW50by5pbyIsImlzcyI6ImdSMjNabzFFWDBrOGJQT2QifQ._ri4MFk0I8VnUokBfXO9qW5vBz_2TSkWYcdOL0-M2po",
-						"disabled": true
+						"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1MjkzNjk2NTEsImV4cCI6MTUyOTQ1NjA1MSwianRpIjoic2pvVlhzaUxkVlE3bENkVE0zTHBFUzlFc2pnUzlaWDJibVpSSlg0U0hJViIsInN1YiI6Im5laWxAaW52ZW50by5pbyIsImlzcyI6ImdSMjNabzFFWDBrOGJQT2QifQ.ISNgk4QykprDCLOch2n_oUN5ssWp6IyjoiOXyv9M2zk"
 					}
 				],
 				"body": {
@@ -182,7 +182,7 @@
 				"header": [
 					{
 						"key": "Authorization",
-						"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1MjkzNjk2NTEsImV4cCI6MTUyOTQ1NjA1MSwianRpIjoic2pvVlhzaUxkVlE3bENkVE0zTHBFUzlFc2pnUzlaWDJibVpSSlg0U0hJViIsInN1YiI6Im5laWxAaW52ZW50by5pbyIsImlzcyI6ImdSMjNabzFFWDBrOGJQT2QifQ.ISNgk4QykprDCLOch2n_oUN5ssWp6IyjoiOXyv9M2zk"
+						"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1Mjk0NTYyNTUsImV4cCI6MTUzNDcyNjY1NSwianRpIjoibTVrVUoyblY5eGlGN1pFZUltamp0OEUxUWkzSDQ0QlZlUjhRenVhTXdCYSIsInN1YiI6Im5laWxAaW52ZW50by5pbyIsImlzcyI6ImdSMjNabzFFWDBrOGJQT2QifQ.nAdhs3cyHj_Akj28qNFa8P2Ip1PdYtEUNPUKqhmiUHY"
 					}
 				],
 				"body": {
@@ -208,15 +208,26 @@
 		{
 			"name": "Add EMP Attendance",
 			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1Mjk0NTg3NjcsImV4cCI6MTUzNDcyOTE2NywianRpIjoiRGpQSEJRY29hUEt2eVV5SThzcUFGQUhoZjdQdzNrcEpITHJNbXk5OWdjbSIsInN1YiI6Im5laWxAaW52ZW50by5pbyIsImlzcyI6ImdSMjNabzFFWDBrOGJQT2QifQ.BQy9el0TOW4BRhj7RDEZ5zFzOUG1zTEIZHTsEpnQmY4",
+							"type": "string"
+						}
+					]
+				},
 				"method": "POST",
 				"header": [
 					{
 						"key": "Content-Type",
-						"value": "application/x-www-form-urlencoded"
+						"value": "application/json"
 					},
 					{
 						"key": "Authorization",
-						"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1MjkzNjk2NTEsImV4cCI6MTUyOTQ1NjA1MSwianRpIjoic2pvVlhzaUxkVlE3bENkVE0zTHBFUzlFc2pnUzlaWDJibVpSSlg0U0hJViIsInN1YiI6Im5laWxAaW52ZW50by5pbyIsImlzcyI6ImdSMjNabzFFWDBrOGJQT2QifQ.ISNgk4QykprDCLOch2n_oUN5ssWp6IyjoiOXyv9M2zk"
+						"value": "",
+						"disabled": true
 					}
 				],
 				"body": {
@@ -243,7 +254,7 @@
 					]
 				},
 				"url": {
-					"raw": "localhost/hris/public/attendance/employeeattendance",
+					"raw": "localhost/hris/public/attendance/employee",
 					"host": [
 						"localhost"
 					],
@@ -251,7 +262,7 @@
 						"hris",
 						"public",
 						"attendance",
-						"employeeattendance"
+						"employee"
 					]
 				}
 			},
@@ -260,11 +271,22 @@
 		{
 			"name": "Attendance All EMP",
 			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1Mjk0NTg3NjcsImV4cCI6MTUzNDcyOTE2NywianRpIjoiRGpQSEJRY29hUEt2eVV5SThzcUFGQUhoZjdQdzNrcEpITHJNbXk5OWdjbSIsInN1YiI6Im5laWxAaW52ZW50by5pbyIsImlzcyI6ImdSMjNabzFFWDBrOGJQT2QifQ.BQy9el0TOW4BRhj7RDEZ5zFzOUG1zTEIZHTsEpnQmY4",
+							"type": "string"
+						}
+					]
+				},
 				"method": "GET",
 				"header": [
 					{
 						"key": "Authorization",
-						"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1MjkzNjk2NTEsImV4cCI6MTUyOTQ1NjA1MSwianRpIjoic2pvVlhzaUxkVlE3bENkVE0zTHBFUzlFc2pnUzlaWDJibVpSSlg0U0hJViIsInN1YiI6Im5laWxAaW52ZW50by5pbyIsImlzcyI6ImdSMjNabzFFWDBrOGJQT2QifQ.ISNgk4QykprDCLOch2n_oUN5ssWp6IyjoiOXyv9M2zk"
+						"value": "",
+						"disabled": true
 					}
 				],
 				"body": {
@@ -272,7 +294,7 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "localhost/hris/public/attendance/allemployeeattendance/1527782400/1530374400/1",
+					"raw": "localhost/hris/public/attendance/allemployee/1527782400/1530374400/1",
 					"host": [
 						"localhost"
 					],
@@ -280,7 +302,7 @@
 						"hris",
 						"public",
 						"attendance",
-						"allemployeeattendance",
+						"allemployee",
 						"1527782400",
 						"1530374400",
 						"1"
@@ -293,14 +315,11 @@
 		{
 			"name": "Attendance EMP",
 			"request": {
-				"auth": {
-					"type": "bearer"
-				},
 				"method": "GET",
 				"header": [
 					{
 						"key": "Authorization",
-						"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1MjkzNjk2NTEsImV4cCI6MTUyOTQ1NjA1MSwianRpIjoic2pvVlhzaUxkVlE3bENkVE0zTHBFUzlFc2pnUzlaWDJibVpSSlg0U0hJViIsInN1YiI6Im5laWxAaW52ZW50by5pbyIsImlzcyI6ImdSMjNabzFFWDBrOGJQT2QifQ.ISNgk4QykprDCLOch2n_oUN5ssWp6IyjoiOXyv9M2zk"
+						"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1Mjk0NTYyNTUsImV4cCI6MTUzNDcyNjY1NSwianRpIjoibTVrVUoyblY5eGlGN1pFZUltamp0OEUxUWkzSDQ0QlZlUjhRenVhTXdCYSIsInN1YiI6Im5laWxAaW52ZW50by5pbyIsImlzcyI6ImdSMjNabzFFWDBrOGJQT2QifQ.nAdhs3cyHj_Akj28qNFa8P2Ip1PdYtEUNPUKqhmiUHY"
 					}
 				],
 				"body": {
@@ -308,7 +327,7 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "localhost/hris/public/attendance/employeeattendance/1527782400/1530374400/MQ%3D%3D",
+					"raw": "localhost/hris/public/attendance/employee/1527782400/1530374400/MQ%3D%3D",
 					"host": [
 						"localhost"
 					],
@@ -316,7 +335,7 @@
 						"hris",
 						"public",
 						"attendance",
-						"employeeattendance",
+						"employee",
 						"1527782400",
 						"1530374400",
 						"MQ%3D%3D"
@@ -327,21 +346,18 @@
 			"response": []
 		},
 		{
-			"name": "Delete Attendance EMP",
+			"name": "Attendance EMP Summary",
 			"request": {
-				"method": "DELETE",
+				"method": "GET",
 				"header": [
 					{
 						"key": "Authorization",
-						"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1MjkzNjk2NTEsImV4cCI6MTUyOTQ1NjA1MSwianRpIjoic2pvVlhzaUxkVlE3bENkVE0zTHBFUzlFc2pnUzlaWDJibVpSSlg0U0hJViIsInN1YiI6Im5laWxAaW52ZW50by5pbyIsImlzcyI6ImdSMjNabzFFWDBrOGJQT2QifQ.ISNgk4QykprDCLOch2n_oUN5ssWp6IyjoiOXyv9M2zk"
+						"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1Mjk0NTYyNTUsImV4cCI6MTUzNDcyNjY1NSwianRpIjoibTVrVUoyblY5eGlGN1pFZUltamp0OEUxUWkzSDQ0QlZlUjhRenVhTXdCYSIsInN1YiI6Im5laWxAaW52ZW50by5pbyIsImlzcyI6ImdSMjNabzFFWDBrOGJQT2QifQ.nAdhs3cyHj_Akj28qNFa8P2Ip1PdYtEUNPUKqhmiUHY"
 					}
 				],
-				"body": {
-					"mode": "raw",
-					"raw": ""
-				},
+				"body": {},
 				"url": {
-					"raw": "localhost/hris/public/attendance/employeeattendance/MQ%3D%3D",
+					"raw": "localhost/hris/public/attendance/employee-summary/1527782400/1530374400/MQ%3D%3D",
 					"host": [
 						"localhost"
 					],
@@ -349,7 +365,39 @@
 						"hris",
 						"public",
 						"attendance",
-						"employeeattendance",
+						"employee-summary",
+						"1527782400",
+						"1530374400",
+						"MQ%3D%3D"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Attendance EMP",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1Mjk0NTYyNTUsImV4cCI6MTUzNDcyNjY1NSwianRpIjoibTVrVUoyblY5eGlGN1pFZUltamp0OEUxUWkzSDQ0QlZlUjhRenVhTXdCYSIsInN1YiI6Im5laWxAaW52ZW50by5pbyIsImlzcyI6ImdSMjNabzFFWDBrOGJQT2QifQ.nAdhs3cyHj_Akj28qNFa8P2Ip1PdYtEUNPUKqhmiUHY"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "localhost/hris/public/attendance/employee/MQ%3D%3D",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"hris",
+						"public",
+						"attendance",
+						"employee",
 						"MQ%3D%3D"
 					]
 				}
@@ -363,7 +411,7 @@
 				"header": [
 					{
 						"key": "Authorization",
-						"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1MjkzMDQ0NDksImV4cCI6MTUyOTMxMTY0OSwianRpIjoiTVlRSE92cWZ3TDhCN0x3YWVkcXFJOFFuWk13V3B3M3htQW9vWk1HT3lTZCIsInN1YiI6Im5laWxAaW52ZW50by5pbyIsImlzcyI6ImdSMjNabzFFWDBrOGJQT2QifQ.i7-F-ed6bKmofjKj87SkJgS8Qf91cCylb5yzNWLzI1E"
+						"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1Mjk0NTYyNTUsImV4cCI6MTUzNDcyNjY1NSwianRpIjoibTVrVUoyblY5eGlGN1pFZUltamp0OEUxUWkzSDQ0QlZlUjhRenVhTXdCYSIsInN1YiI6Im5laWxAaW52ZW50by5pbyIsImlzcyI6ImdSMjNabzFFWDBrOGJQT2QifQ.nAdhs3cyHj_Akj28qNFa8P2Ip1PdYtEUNPUKqhmiUHY"
 					}
 				],
 				"body": {
@@ -398,7 +446,7 @@
 				"header": [
 					{
 						"key": "Authorization",
-						"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1MjkzNjk2NTEsImV4cCI6MTUyOTQ1NjA1MSwianRpIjoic2pvVlhzaUxkVlE3bENkVE0zTHBFUzlFc2pnUzlaWDJibVpSSlg0U0hJViIsInN1YiI6Im5laWxAaW52ZW50by5pbyIsImlzcyI6ImdSMjNabzFFWDBrOGJQT2QifQ.ISNgk4QykprDCLOch2n_oUN5ssWp6IyjoiOXyv9M2zk"
+						"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1Mjk0NTYyNTUsImV4cCI6MTUzNDcyNjY1NSwianRpIjoibTVrVUoyblY5eGlGN1pFZUltamp0OEUxUWkzSDQ0QlZlUjhRenVhTXdCYSIsInN1YiI6Im5laWxAaW52ZW50by5pbyIsImlzcyI6ImdSMjNabzFFWDBrOGJQT2QifQ.nAdhs3cyHj_Akj28qNFa8P2Ip1PdYtEUNPUKqhmiUHY"
 					}
 				],
 				"body": {},
