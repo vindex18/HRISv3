@@ -41,7 +41,7 @@
 				"header": [
 					{
 						"key": "Authorization",
-						"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1Mjk0NTYyNTUsImV4cCI6MTUzNDcyNjY1NSwianRpIjoibTVrVUoyblY5eGlGN1pFZUltamp0OEUxUWkzSDQ0QlZlUjhRenVhTXdCYSIsInN1YiI6Im5laWxAaW52ZW50by5pbyIsImlzcyI6ImdSMjNabzFFWDBrOGJQT2QifQ.nAdhs3cyHj_Akj28qNFa8P2Ip1PdYtEUNPUKqhmiUHY"
+						"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1Mjk0Nzc3MjksImV4cCI6MTUzNDc0ODEyOSwianRpIjoieTVXdm5CQXBBWEhaUVVwY2VoNHloVThXQ3dyOVVvRTdmZzdVMU5JR2ZCaiIsInN1YiI6Im5laWxAaW52ZW50by5pbyIsImlzcyI6ImdSMjNabzFFWDBrOGJQT2QifQ.ScERaPruXp4DXPqM6N9wobUXoFjEWJsuFX1g4hE1WxA"
 					}
 				],
 				"body": {
@@ -459,6 +459,31 @@
 						"hris",
 						"public",
 						"attendancetype"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Root Testing",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1Mjk0Nzc3MjksImV4cCI6MTUzNDc0ODEyOSwianRpIjoieTVXdm5CQXBBWEhaUVVwY2VoNHloVThXQ3dyOVVvRTdmZzdVMU5JR2ZCaiIsInN1YiI6Im5laWxAaW52ZW50by5pbyIsImlzcyI6ImdSMjNabzFFWDBrOGJQT2QifQ.ScERaPruXp4DXPqM6N9wobUXoFjEWJsuFX1g4hE1WxA"
+					}
+				],
+				"body": {},
+				"url": {
+					"raw": "localhost/hris/public/",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"hris",
+						"public",
+						""
 					]
 				}
 			},
