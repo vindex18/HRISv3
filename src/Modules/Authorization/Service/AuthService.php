@@ -29,9 +29,14 @@ class AuthService {
         else{
             if($userexists->is_active)
             {
-                if(password_verify(strip_tags($req->getParam('password')), $userexists->password))
-                    //var_dump('User Authentication Succeeded!'); 
-                    return array('status' => true, 'msg' => 'Auth Success', 'tk' => AuthService::generate_jwt($req, $res, $userexists->email));
+                if(password_verify(strip_tags($req->getParam('password')), $userexists->password)){
+                    //var_dump($userexists); die();
+                    //$last_punch = AttendanceDao::getLastPunch($userexists->);
+                    return array('status' => true, 
+                                 'msg' => 'Auth Success', 
+                                 'tk' => AuthService::generate_jwt($req, $res, $userexists->email),
+                                );
+                }
                 else
                     //var_dump("User Authentication Failed!");
                     return array('status' => false, 'msg' => 'Incorrect Email/Password!', 'tk' => '');
@@ -66,8 +71,6 @@ class AuthService {
 
         print_r($decoded);
         die();*/
-
-       
     }
 
 }

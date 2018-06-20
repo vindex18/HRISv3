@@ -38,13 +38,16 @@ class Auth {
         }
         else //Secured Requests
         {
+            //if($req->hasHeader('Authorization')&&isset($req->getHeader('Authorization')[0])&&!empty($req->getHeader('Authorization')[0])){
             if($req->hasHeader('Authorization')&&isset($req->getHeader('Authorization')[0])){
+                //return $res->withJSON($req->getHeader('Authorization'));
                 $key = Auth::jwtSecret(); //Get Secret Key
                 $payload = $req->getHeader('Authorization')[0];
                 $authorization = explode(".", $req->getHeader('Authorization')[0]);
                 //Evaluate Authentication
                 //return $res->withJSON(!empty($authorization[1]));
                 //return $res->withJSON(($authorization[1]) ? 1 : 2);
+                //if(isset($authorization[1])){
                 switch($authorization[1]){
                     case true:  //return $res->withJSON(true);
                                 try {
@@ -64,6 +67,7 @@ class Auth {
                 }
             }
         }
+        //return $res->withJSON(['message' => 'Unauthorized Request', 'token' => $token], 401);
            /*if($req->hasHeader('Authorization')&&isset($req->getHeader('Authorization')[0])&&!empty($req->getHeader('Authorization')[0])){
                 $key = Auth::jwtSecret(); //Get Secret Key
                 $payload = $req->getHeader('Authorization')[0];

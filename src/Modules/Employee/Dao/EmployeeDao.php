@@ -14,7 +14,8 @@ class EmployeeDao {
     }
     
     function checkEmailExistsOnAddEmployee($email){
-        return EmployeeModel::where('email', '=', strip_tags($email))->where('is_active', '=', 1)->first();
+        return EmployeeModel::select('first_name', 'middle_name', 'last_name', 'email', 'password', 'is_admin', 'is_active')
+                        ->where('email', '=', strip_tags($email))->where('is_active', '=', 1)->first();
     }
 
     function deleteEmployee($emp_id){
