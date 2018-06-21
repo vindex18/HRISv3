@@ -52,7 +52,7 @@ class AttendanceDao {
         //echo $max_on_select[0]->type_id." ".$max_on_select[0]->datetime; die();
         //var_dump($max_on_select); die();
         if($max_on_select[0]->type_id==1){  //if almost max or last == TO (OKAY) else check next day
-            echo "X"; die();
+            //echo "X"; die();
             return $max_on_select[0]->datetime;
         }
         else
@@ -194,20 +194,92 @@ class AttendanceDao {
         return [$hr, $m, $s];
     } 
 
-    function traverseRecords($data, $seq, $seqtime, $seqindx){
-
-        $brkincount = $brkoutcount = 0;
-
+    function traverseRecords($data, $seq, $seqtime, $seqindx, $recindx){
         echo "<br>Sequential TI-TO<br>";
         //Get Indexes Per Transaction
-
         echo "<br><br>Calculating......<br>";
-        $sum = 0;
+        // print_r($recindx);
+        // echo "<br>";
+        $sum = 0; $ttl_wkhrs = $ttl_brkhrs = $perDay = array();
+        
+        for($c=0;$c<count($recindx);$c++){
+            //- strtotime($data[$recindx[$c][0]]->datetime);
+            $brkcount = $tcount = 0;
+            echo "<br>".$brkcount." - ".$tcount."<br>";
+            if(is_numeric($recindx[$c][0])&&is_numeric($recindx[$c][1])){ //Complete Record
+                echo "<br>------------------------------------------<br><br>SEGMENT
+                [".($c+1)."] (".$recindx[$c][0]." - ".$recindx[$c][1].")";
+                // echo "DATETIME: ".strtotime($data[$recindx[$c][1]]->datetime);
+                // echo "DATETIME: ".strtotime($data[$recindx[$c][0]]->datetime);
+               
+                for($x=$recindx[$c][0];$x<=$recindx[$c][1];$x++){
+                    //$ttlhrs = $data[$recindx[$x][1]]->datetime - $data[$recindx[$x][0]]->datetime;
+                    echo "<br>".date('M d, Y g:i A', strtotime($data[$x]->datetime))." [".$x."] - ".$data[$x]->code." - ";
+                    $f = strtotime($data[$x]->datetime);
+                    
+                    //($data[$x]->code=="BI"||$data[$x]->code=="BO") ? $brkcount++ : null;
+                    if(array_key_exists($x+1, $data)){ 
+                        $t = strtotime($data[$x+1]->datetime);
+                        $diff = $t - $f;
+                        $diffx = AttendanceDao::convertTime($diff);
+                        if($data[$x]->code=="BO"){ 
+                            if($data[$x+1]->code!="TI"&&$data[$x+1]->code!="TO"){
+                            echo "TOTAL BREAK DIFFERENCE: ".$diffx[0]."h, ".$diffx[1]."m, ".$diffx[2]."s"; 
+                            $sum+=$diff;
+                            }
+                        }
+                    }
+                 
+                    if($data[$x]->code=="TO"||$data[$x]->code=="TI"){
+                        $tcount++;
+                    }
+
+                    if($data[$x]->code=="BO"||$data[$x]->code=="BI"){
+                        $brkcount++;
+                    }
+                }
+               
+                //5400 -> 1 Hour and 30 Minutes Break, 28800 -> 8 hours
+                echo "<br><br><b>";
+                echo ($tcount%2==0&&$brkcount%2==0) ? "<span style='color:green';> [Complete Record]</span>" : "<span style='color:red;'>[Incomplete Record]</span>";
+                //echo ($brkcount%2==0) ? "<span style='color:green';> [Complete Record]</span>" : "<span style='color:red;'>[Incomplete Record]</span>";
+                
+                echo "</b>";
+                echo "<br><b>BREAK COUNT:</b> ".$brkcount;
+                echo "<br><b>TI/TO COUNT:</b> ".$tcount;
+
+                $ttl_brkhrs[$c] = $sum;
+                $diffx = AttendanceDao::convertTime($ttl_brkhrs[$c]);
+                echo "</b><br><b>TOTAL BREAK ACCUMULATED:</b> ".$diffx[0]."h, ".$diffx[1]."m, ".$diffx[2]."s<b>"; 
+                echo ($ttl_brkhrs[$c]<=5400) ? "<span style='color:green';> [Okay!]</span>" : "<span style='color:red;'> [Overbreak!]</span>";
+                echo "</b>";
+                $temp = ($ttl_brkhrs<=1800) ? $ttl_brkhrs : $ttl_brkhrs[$c] - 1800;
+                $ttl_wkhrs[$c] = (strtotime($data[$recindx[$c][1]]->datetime) - strtotime($data[$recindx[$c][0]]->datetime)) - $temp;
+                $diffx = AttendanceDao::convertTime($ttl_wkhrs[$c]);
+
+                echo "</b><br><b>TOTAL WORKING HOURS ACCUMULATED: </b> ".$diffx[0]."h, ".$diffx[1]."m, ".$diffx[2]."s<b>"; 
+
+                if($ttl_wkhrs[$c]==28800)
+                    echo "<span style='color:blue';> [Okay!]</span>"; 
+                elseif($ttl_wkhrs[$c]<28800)
+                    echo "<span style='color:red;'> [Undertime!]</span>";
+                else
+                    echo "<span style='color:green;'> [Overtime!!]</span>";
+                
+                echo "</b>";
+            }
+            else{ //Not Complete
+                echo "<br>------------------------------------------<br><br>SEGMENT
+                [".($c+1)."] (".$recindx[$c][0]." - ".$recindx[$c][1].")";
+                //for($x=$recindx[$c][0];$x<=;$x++){
+
+            }
+        }
+
+        /*
         for($c=0;$c<count($data);$c++){ 
-            //echo $data[$c]->code." -  ".date('M d, Y g:i A', strtotime($data[$c]->datetime))."<br>";
-           
-            $f = strtotime($data[$c]->datetime);
             echo "<br>".date('M d, Y g:i A', strtotime($data[$c]->datetime))." [".$c."] - ".$data[$c]->code." - ";
+            $f = strtotime($data[$c]->datetime);
             ($data[$c]->code=="BI") ? $brkincount++ : null;
             ($data[$c]->code=="BO") ? $brkoutcount++ : null;
             if(array_key_exists($c+1, $data)){ //Total Break
@@ -219,11 +291,8 @@ class AttendanceDao {
                     $sum+=$diff;
                 }
             }
-        }
+        }*/
 
-        echo "<br><br>BREAKOUT COUNT: ".$brkoutcount." - BREAKIN COUNT: ".$brkincount;
-
-        
         //echo "<br><br>----------TIME DIFF---------------------<br>";
         //echo "<br>Total Hours: ".$total->diff($sum)->format('%h Hr %i Min %s Sec'); //%y Years %m Months %d Days 
         //return $total->diff($sum)->format('%h Hours %i Minutes %s Seconds');
@@ -276,24 +345,30 @@ class AttendanceDao {
                     ->toArray();
         //$queries = DB::getQueryLog(); var_dump($queries); die("End of Query");
         //var_dump($data); die();
-        $seq = $seqtime = array();
+        $seq = $seqtime = $seqindx= array();
 
-        $brkincount = $brkoutcount = 0;
-
+        //$brkincount = $brkoutcount = 0;
+        $count = count($data) - 1;
         for($c=0;$c<count($data);$c++){
             //check ti to to
-
             if($data[$c]->code=="TI"||$data[$c]->code=="TO"){
                 $seq[] = $data[$c]->code;
                 $seqindx[] = $c;
                 $seqtime[] = $data[$c]->datetime;
+            }elseif($count==$c){
+                $seqindx[] = $c;
             }
 
-            ($data[$c]->code=="BI") ? $brkincount++ : null;
+            // ($data[$c]->code=="BI") ? $brkincount++ : null;
     
-            ($data[$c]->code=="BO") ? $brkoutcount++ : null;
+            // ($data[$c]->code=="BO") ? $brkoutcount++ : null;
         }
+
         $c = 0;
+        // for($c=0;$c<count($seqindx);$c++){
+        //     echo $seqindx[$c]."<br>";
+        // } die();
+
         while($c<count($seqindx)){ //pairing index
             if(array_key_exists($c+1, $seqindx)){
                 $recindx[] = array($seqindx[$c], $seqindx[$c+1]);
@@ -301,10 +376,11 @@ class AttendanceDao {
                 continue;
             }else
                 $recindx[] = array($seqindx[$c], '*');
-            
             $c++;
         }
 
+        //var_dump($seqindx); die();
+        //var_dump($recindx); //die();
         for($c=0;$c<count($recindx);$c++){
             print_r($recindx[$c])."<br>";
         }
@@ -313,7 +389,7 @@ class AttendanceDao {
 
         if(!is_null($data)){
             //Traversing Through Records 
-            AttendanceDao::traverseRecords($data, $seq, $seqtime, $seqindx);
+            AttendanceDao::traverseRecords($data, $seq, $seqtime, $seqindx, $recindx);
         }
 
         //Debugging

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 20, 2018 at 01:49 PM
+-- Generation Time: Jun 21, 2018 at 02:24 PM
 -- Server version: 10.1.30-MariaDB
 -- PHP Version: 7.2.2
 
@@ -33,8 +33,8 @@ CREATE TABLE `attendance` (
   `type_id` int(11) NOT NULL,
   `datetime` datetime DEFAULT NULL,
   `emp_id` int(11) NOT NULL,
-  `created_at` datetime NOT NULL,
-  `updated_at` datetime NOT NULL
+  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -56,7 +56,9 @@ INSERT INTO `attendance` (`id`, `type_id`, `datetime`, `emp_id`, `created_at`, `
 (19, 3, '2018-06-19 10:15:00', 1, '2018-06-11 00:00:00', '2018-06-11 00:00:00'),
 (21, 1, '2018-06-20 09:00:00', 1, '2018-06-19 14:32:30', '2018-06-19 14:32:30'),
 (22, 2, '2018-06-20 12:00:00', 1, '2018-06-19 14:32:30', '2018-06-19 14:32:30'),
-(23, 3, '2018-06-20 13:30:00', 1, '2018-06-19 14:32:30', '2018-06-19 14:32:30');
+(23, 3, '2018-06-20 13:30:00', 1, '2018-06-19 14:32:30', '2018-06-19 14:32:30'),
+(24, 1, '2018-06-20 09:00:00', 2, '2018-06-20 09:00:00', '2018-06-11 14:33:00'),
+(26, 2, '2018-06-20 11:00:00', 2, '2018-06-20 09:00:00', '2018-06-11 14:33:00');
 
 -- --------------------------------------------------------
 
@@ -111,7 +113,7 @@ CREATE TABLE `employees` (
 
 INSERT INTO `employees` (`id`, `first_name`, `middle_name`, `last_name`, `phone`, `email`, `address`, `pos_title`, `password`, `is_admin`, `created_at`, `updated_at`, `is_active`, `datejoined`) VALUES
 (1, 'Neil Daryl', 'Reyes', 'Sulit', '0945-362-7267', 'neil@invento.io', '667 Sucat, Muntinlupa City', 'Junior Web Developer', '$2y$10$Ry6TpxJLv9Re4swyS.9FDO.NWy3ettYe4JPhg3F5UqDT3T6XKwhS6', 0, '2018-06-10 11:05:19', '2018-06-10 11:05:19', 1, '2018-06-04'),
-(2, 'Ivan Roir', '', 'Bruselas', '0945-362-7267', 'ivan@invento.io', 'Las Piñas', 'Junior Web Developer', '$2y$10$PEh822mrby5W3A0cvqJWt.dNBLCLLfYuQ67TXGwOMpNsWlDGWIcDe', 0, '2018-06-20 10:20:44', '2018-06-20 10:20:44', 1, '2018-06-04'),
+(2, 'Ivan Roir', 'Sermonia', 'Bruselas', '0945-362-7267', 'ivan@invento.io', 'Las Piñas', 'Junior Web Developer', '$2y$10$PEh822mrby5W3A0cvqJWt.dNBLCLLfYuQ67TXGwOMpNsWlDGWIcDe', 0, '2018-06-20 10:20:44', '2018-06-20 15:59:00', 1, '2018-06-04'),
 (3, 'Jan Myckel', 'Labayog', 'Perez', '0929-208-6707', 'jan@invento.io', 'Las Piñas City', 'Junior Web Developer', '$2y$10$vNMFaglzTx1TMvmIBWmGweMSpXtmiWTaqXJ7lxXZQJDPAaA9aW0me', 0, '2018-06-13 10:46:02', '2018-06-13 10:46:02', 1, '2018-06-11'),
 (4, 'Camille Franchesca', '', 'Cuisa', '0912-345-6789', 'camille@invento.io', 'Las Piñas', 'Web Designer', '$2y$10$lrCXwl1J1gTVWi7lgOBuNehG6cLkdCHPkdG1i9UyYKrrB0UFoumha', 0, '2018-06-19 15:20:42', '2018-06-19 15:20:42', 1, '2018-06-18');
 
@@ -167,7 +169,7 @@ ALTER TABLE `revoked_tokens`
 -- AUTO_INCREMENT for table `attendance`
 --
 ALTER TABLE `attendance`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT for table `attendancetype`

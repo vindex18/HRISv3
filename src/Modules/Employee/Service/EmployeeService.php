@@ -47,6 +47,7 @@ class EmployeeService {
             'lastname' => v::notEmpty()->alpha(),
             'password' => v::noWhitespace()->notEmpty()->length(6, null),
             'email' => v::noWhitespace()->notEmpty()->email(),
+            'datejoined' => v::date()->notEmpty()
         ]); 
 
         if(!is_null($validation))

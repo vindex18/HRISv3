@@ -86,7 +86,6 @@ $app->add(function ($request, $response, $next) {
 
 //Adding Middleware
 
-
 $app->add(new \App\Middleware\Auth($container));
 
 $app->add(function ($req, $res, $next) {
@@ -99,15 +98,17 @@ $app->add(function ($req, $res, $next) {
 
 });
 
-// $app->add(function ($request, $response, $next) {
-//     $id = $request->getAttribute('route');
-//     var_dump($id); die();
-//     return $next($request, $response);
-// });
-
 require __DIR__ . '/../src/routes.php'; //Route Summary
-//$app->add(new \App\Middleware\ValidationErrorsMiddleware()); 
 
+$app->add(new \App\Middleware\ExitMiddleware()); 
+
+// $app->add(function ($request, $response, $next) {
+// 	$response->getBody()->write('BEFORE');
+// 	$response = $next($request, $response);
+// 	$response->getBody()->write('AFTER');
+
+// 	return $response;
+// });
 
 
 

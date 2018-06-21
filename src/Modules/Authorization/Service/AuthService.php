@@ -16,7 +16,7 @@ class AuthService {
 
         $validation = Validator::validate($req, [
             'email' => v::noWhitespace()->notEmpty()->email(),
-            'password' => v::noWhitespace()->notEmpty()->length(6, null),
+            'password' => v::noWhitespace()->notEmpty() //->length(6, null),
         ]); 
         
         if(!is_null($validation))
@@ -34,8 +34,7 @@ class AuthService {
                     //$last_punch = AttendanceDao::getLastPunch($userexists->);
                     return array('status' => true, 
                                  'msg' => 'Auth Success', 
-                                 'tk' => AuthService::generate_jwt($req, $res, $userexists->email),
-                                );
+                                 'tk' => AuthService::generate_jwt($req, $res, $userexists->email, $userexists));
                 }
                 else
                     //var_dump("User Authentication Failed!");
@@ -49,7 +48,7 @@ class AuthService {
         }
     }
 
-    function generate_jwt($req, $res, $email){
+    function generate_jwt($req, $res, $email, $userexists){
         $now = new DateTime();
         //$future = new DateTime("now +2 hours");
         $future = new DateTime("now +2 months"); //+1 day
@@ -57,18 +56,23 @@ class AuthService {
 
         $payload = [
             'iat' => $now->getTimeStamp(), //issued at
-            //'exp' => $now->createFromFormat('d/m/Y H:i:s', '23/05/2013'), 
+             //'exp' => $now->createFromFormat('d/m/Y H:i:s', '23/05/2013'), 
             'exp' => $future->getTimeStamp(), //expiration
             'jti' => $base62->encode(random_bytes(32)), //json token id
-            'sub' => $email, //subject
-            'iss' => $base62->encode("invento-hris") //issuer
+            'sub' => $base62->encode($email), //subject
+            'iss' => $base62->encode("invento-hris"), //issuer
+            'firstname' => base64_encode($userexists->first_name),
+            'middlename' => base64_encode($userexists->middle_name),
+            'lastname' => base64_encode($userexists->last_name),
+            'email' => base64_encode($userexists->email),
+            'position' => base64_encode($userexists->pos_title),
+            'sid' => base64_encode($userexists->id)
         ];
 
         $secret = Auth::jwtSecret();
         return JWT::encode($payload, $secret, "HS256");
         /*$jwt = JWT::encode($payload, $secret, "HS256");
         $decoded = JWT::decode($jwt, $secret, array('HS256'));
-
         print_r($decoded);
         die();*/
     }

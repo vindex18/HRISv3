@@ -12,7 +12,7 @@
 				"header": [
 					{
 						"key": "Authorization",
-						"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1Mjk0NTYyNTUsImV4cCI6MTUzNDcyNjY1NSwianRpIjoibTVrVUoyblY5eGlGN1pFZUltamp0OEUxUWkzSDQ0QlZlUjhRenVhTXdCYSIsInN1YiI6Im5laWxAaW52ZW50by5pbyIsImlzcyI6ImdSMjNabzFFWDBrOGJQT2QifQ.nAdhs3cyHj_Akj28qNFa8P2Ip1PdYtEUNPUKqhmiUHY"
+						"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1Mjk1NjE4ODEsImV4cCI6MTUzNDgzMjI4MSwianRpIjoic21tVGdXeXl3NEFEa0R1TjBsUVZHcmdaeVVXRTE0N1d3aFdvSHdvUzZYQyIsInN1YiI6Im9SeUs1dlhoWEFrNlA4RmZsWm9GIiwiaXNzIjoiZ1IyM1pvMUVYMGs4YlBPZCIsInN1YmQiOiJNUSUzRCUzRCJ9.dJhk2PqmoIwHGFX4k4Ru_Olxkcuc20swCsRrqDjZgrg"
 					}
 				],
 				"body": {},
@@ -41,7 +41,7 @@
 				"header": [
 					{
 						"key": "Authorization",
-						"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1Mjk0Nzc3MjksImV4cCI6MTUzNDc0ODEyOSwianRpIjoieTVXdm5CQXBBWEhaUVVwY2VoNHloVThXQ3dyOVVvRTdmZzdVMU5JR2ZCaiIsInN1YiI6Im5laWxAaW52ZW50by5pbyIsImlzcyI6ImdSMjNabzFFWDBrOGJQT2QifQ.ScERaPruXp4DXPqM6N9wobUXoFjEWJsuFX1g4hE1WxA"
+						"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1Mjk1NTgwMzUsImV4cCI6MTUzNDgyODQzNSwianRpIjoiV2pFMnVaa0JodDhPUzJGeFE5OXhJNzgxZzV6WFRkaVMzOWptUnduYjlYWCIsInN1YiI6Im9SeUs1dlhoWEFrNlA4RmZsWm9GIiwiaXNzIjoiZ1IyM1pvMUVYMGs4YlBPZCIsInN1YmQiOiJNUSUzRCUzRCJ9.isDCcqtzGwTOsmjUk-NbyYwR59bGdqTYi_k-casCm00"
 					}
 				],
 				"body": {
@@ -66,13 +66,48 @@
 			"response": []
 		},
 		{
+			"name": "Validating Employee Login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "email",
+							"value": "neil@invento.io",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "qwerty",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost/hris/public/authorization/validatecredentials",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"hris",
+						"public",
+						"authorization",
+						"validatecredentials"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "Adding Employee Record",
 			"request": {
 				"method": "POST",
 				"header": [
 					{
 						"key": "Authorization",
-						"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1Mjk0NTYyNTUsImV4cCI6MTUzNDcyNjY1NSwianRpIjoibTVrVUoyblY5eGlGN1pFZUltamp0OEUxUWkzSDQ0QlZlUjhRenVhTXdCYSIsInN1YiI6Im5laWxAaW52ZW50by5pbyIsImlzcyI6ImdSMjNabzFFWDBrOGJQT2QifQ.nAdhs3cyHj_Akj28qNFa8P2Ip1PdYtEUNPUKqhmiUHY"
+						"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1Mjk1NjE4ODEsImV4cCI6MTUzNDgzMjI4MSwianRpIjoic21tVGdXeXl3NEFEa0R1TjBsUVZHcmdaeVVXRTE0N1d3aFdvSHdvUzZYQyIsInN1YiI6Im9SeUs1dlhoWEFrNlA4RmZsWm9GIiwiaXNzIjoiZ1IyM1pvMUVYMGs4YlBPZCIsInN1YmQiOiJNUSUzRCUzRCJ9.dJhk2PqmoIwHGFX4k4Ru_Olxkcuc20swCsRrqDjZgrg"
 					}
 				],
 				"body": {
@@ -117,6 +152,12 @@
 							"key": "middlename",
 							"value": "",
 							"type": "text"
+						},
+						{
+							"key": "datejoined",
+							"value": "2018-06-04",
+							"description": "",
+							"type": "text"
 						}
 					]
 				},
@@ -136,53 +177,13 @@
 			"response": []
 		},
 		{
-			"name": "Validating Employee Login",
-			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "Authorization",
-						"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1MjkzNjk2NTEsImV4cCI6MTUyOTQ1NjA1MSwianRpIjoic2pvVlhzaUxkVlE3bENkVE0zTHBFUzlFc2pnUzlaWDJibVpSSlg0U0hJViIsInN1YiI6Im5laWxAaW52ZW50by5pbyIsImlzcyI6ImdSMjNabzFFWDBrOGJQT2QifQ.ISNgk4QykprDCLOch2n_oUN5ssWp6IyjoiOXyv9M2zk"
-					}
-				],
-				"body": {
-					"mode": "formdata",
-					"formdata": [
-						{
-							"key": "email",
-							"value": "neil@invento.io",
-							"type": "text"
-						},
-						{
-							"key": "password",
-							"value": "qwerty",
-							"type": "text"
-						}
-					]
-				},
-				"url": {
-					"raw": "localhost/hris/public/authorization/validatecredentials",
-					"host": [
-						"localhost"
-					],
-					"path": [
-						"hris",
-						"public",
-						"authorization",
-						"validatecredentials"
-					]
-				}
-			},
-			"response": []
-		},
-		{
 			"name": "Delete Employee",
 			"request": {
 				"method": "DELETE",
 				"header": [
 					{
 						"key": "Authorization",
-						"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1Mjk0NTYyNTUsImV4cCI6MTUzNDcyNjY1NSwianRpIjoibTVrVUoyblY5eGlGN1pFZUltamp0OEUxUWkzSDQ0QlZlUjhRenVhTXdCYSIsInN1YiI6Im5laWxAaW52ZW50by5pbyIsImlzcyI6ImdSMjNabzFFWDBrOGJQT2QifQ.nAdhs3cyHj_Akj28qNFa8P2Ip1PdYtEUNPUKqhmiUHY"
+						"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1Mjk1NjE4ODEsImV4cCI6MTUzNDgzMjI4MSwianRpIjoic21tVGdXeXl3NEFEa0R1TjBsUVZHcmdaeVVXRTE0N1d3aFdvSHdvUzZYQyIsInN1YiI6Im9SeUs1dlhoWEFrNlA4RmZsWm9GIiwiaXNzIjoiZ1IyM1pvMUVYMGs4YlBPZCIsInN1YmQiOiJNUSUzRCUzRCJ9.dJhk2PqmoIwHGFX4k4Ru_Olxkcuc20swCsRrqDjZgrg"
 					}
 				],
 				"body": {
@@ -208,16 +209,6 @@
 		{
 			"name": "Add EMP Attendance",
 			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1Mjk0NTg3NjcsImV4cCI6MTUzNDcyOTE2NywianRpIjoiRGpQSEJRY29hUEt2eVV5SThzcUFGQUhoZjdQdzNrcEpITHJNbXk5OWdjbSIsInN1YiI6Im5laWxAaW52ZW50by5pbyIsImlzcyI6ImdSMjNabzFFWDBrOGJQT2QifQ.BQy9el0TOW4BRhj7RDEZ5zFzOUG1zTEIZHTsEpnQmY4",
-							"type": "string"
-						}
-					]
-				},
 				"method": "POST",
 				"header": [
 					{
@@ -226,8 +217,7 @@
 					},
 					{
 						"key": "Authorization",
-						"value": "",
-						"disabled": true
+						"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1Mjk1NjE4ODEsImV4cCI6MTUzNDgzMjI4MSwianRpIjoic21tVGdXeXl3NEFEa0R1TjBsUVZHcmdaeVVXRTE0N1d3aFdvSHdvUzZYQyIsInN1YiI6Im9SeUs1dlhoWEFrNlA4RmZsWm9GIiwiaXNzIjoiZ1IyM1pvMUVYMGs4YlBPZCIsInN1YmQiOiJNUSUzRCUzRCJ9.dJhk2PqmoIwHGFX4k4Ru_Olxkcuc20swCsRrqDjZgrg"
 					}
 				],
 				"body": {
@@ -271,22 +261,11 @@
 		{
 			"name": "Attendance All EMP",
 			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1Mjk0NTg3NjcsImV4cCI6MTUzNDcyOTE2NywianRpIjoiRGpQSEJRY29hUEt2eVV5SThzcUFGQUhoZjdQdzNrcEpITHJNbXk5OWdjbSIsInN1YiI6Im5laWxAaW52ZW50by5pbyIsImlzcyI6ImdSMjNabzFFWDBrOGJQT2QifQ.BQy9el0TOW4BRhj7RDEZ5zFzOUG1zTEIZHTsEpnQmY4",
-							"type": "string"
-						}
-					]
-				},
 				"method": "GET",
 				"header": [
 					{
 						"key": "Authorization",
-						"value": "",
-						"disabled": true
+						"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1Mjk1NjE4ODEsImV4cCI6MTUzNDgzMjI4MSwianRpIjoic21tVGdXeXl3NEFEa0R1TjBsUVZHcmdaeVVXRTE0N1d3aFdvSHdvUzZYQyIsInN1YiI6Im9SeUs1dlhoWEFrNlA4RmZsWm9GIiwiaXNzIjoiZ1IyM1pvMUVYMGs4YlBPZCIsInN1YmQiOiJNUSUzRCUzRCJ9.dJhk2PqmoIwHGFX4k4Ru_Olxkcuc20swCsRrqDjZgrg"
 					}
 				],
 				"body": {
@@ -319,7 +298,7 @@
 				"header": [
 					{
 						"key": "Authorization",
-						"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1Mjk0NTYyNTUsImV4cCI6MTUzNDcyNjY1NSwianRpIjoibTVrVUoyblY5eGlGN1pFZUltamp0OEUxUWkzSDQ0QlZlUjhRenVhTXdCYSIsInN1YiI6Im5laWxAaW52ZW50by5pbyIsImlzcyI6ImdSMjNabzFFWDBrOGJQT2QifQ.nAdhs3cyHj_Akj28qNFa8P2Ip1PdYtEUNPUKqhmiUHY"
+						"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1Mjk1NjE4ODEsImV4cCI6MTUzNDgzMjI4MSwianRpIjoic21tVGdXeXl3NEFEa0R1TjBsUVZHcmdaeVVXRTE0N1d3aFdvSHdvUzZYQyIsInN1YiI6Im9SeUs1dlhoWEFrNlA4RmZsWm9GIiwiaXNzIjoiZ1IyM1pvMUVYMGs4YlBPZCIsInN1YmQiOiJNUSUzRCUzRCJ9.dJhk2PqmoIwHGFX4k4Ru_Olxkcuc20swCsRrqDjZgrg"
 					}
 				],
 				"body": {
@@ -352,7 +331,7 @@
 				"header": [
 					{
 						"key": "Authorization",
-						"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1Mjk0NTYyNTUsImV4cCI6MTUzNDcyNjY1NSwianRpIjoibTVrVUoyblY5eGlGN1pFZUltamp0OEUxUWkzSDQ0QlZlUjhRenVhTXdCYSIsInN1YiI6Im5laWxAaW52ZW50by5pbyIsImlzcyI6ImdSMjNabzFFWDBrOGJQT2QifQ.nAdhs3cyHj_Akj28qNFa8P2Ip1PdYtEUNPUKqhmiUHY"
+						"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1Mjk1NjE4ODEsImV4cCI6MTUzNDgzMjI4MSwianRpIjoic21tVGdXeXl3NEFEa0R1TjBsUVZHcmdaeVVXRTE0N1d3aFdvSHdvUzZYQyIsInN1YiI6Im9SeUs1dlhoWEFrNlA4RmZsWm9GIiwiaXNzIjoiZ1IyM1pvMUVYMGs4YlBPZCIsInN1YmQiOiJNUSUzRCUzRCJ9.dJhk2PqmoIwHGFX4k4Ru_Olxkcuc20swCsRrqDjZgrg"
 					}
 				],
 				"body": {},
@@ -381,7 +360,7 @@
 				"header": [
 					{
 						"key": "Authorization",
-						"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1Mjk0NTYyNTUsImV4cCI6MTUzNDcyNjY1NSwianRpIjoibTVrVUoyblY5eGlGN1pFZUltamp0OEUxUWkzSDQ0QlZlUjhRenVhTXdCYSIsInN1YiI6Im5laWxAaW52ZW50by5pbyIsImlzcyI6ImdSMjNabzFFWDBrOGJQT2QifQ.nAdhs3cyHj_Akj28qNFa8P2Ip1PdYtEUNPUKqhmiUHY"
+						"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1Mjk1NjE4ODEsImV4cCI6MTUzNDgzMjI4MSwianRpIjoic21tVGdXeXl3NEFEa0R1TjBsUVZHcmdaeVVXRTE0N1d3aFdvSHdvUzZYQyIsInN1YiI6Im9SeUs1dlhoWEFrNlA4RmZsWm9GIiwiaXNzIjoiZ1IyM1pvMUVYMGs4YlBPZCIsInN1YmQiOiJNUSUzRCUzRCJ9.dJhk2PqmoIwHGFX4k4Ru_Olxkcuc20swCsRrqDjZgrg"
 					}
 				],
 				"body": {
@@ -411,7 +390,7 @@
 				"header": [
 					{
 						"key": "Authorization",
-						"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1Mjk0NTYyNTUsImV4cCI6MTUzNDcyNjY1NSwianRpIjoibTVrVUoyblY5eGlGN1pFZUltamp0OEUxUWkzSDQ0QlZlUjhRenVhTXdCYSIsInN1YiI6Im5laWxAaW52ZW50by5pbyIsImlzcyI6ImdSMjNabzFFWDBrOGJQT2QifQ.nAdhs3cyHj_Akj28qNFa8P2Ip1PdYtEUNPUKqhmiUHY"
+						"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1Mjk1NjE4ODEsImV4cCI6MTUzNDgzMjI4MSwianRpIjoic21tVGdXeXl3NEFEa0R1TjBsUVZHcmdaeVVXRTE0N1d3aFdvSHdvUzZYQyIsInN1YiI6Im9SeUs1dlhoWEFrNlA4RmZsWm9GIiwiaXNzIjoiZ1IyM1pvMUVYMGs4YlBPZCIsInN1YmQiOiJNUSUzRCUzRCJ9.dJhk2PqmoIwHGFX4k4Ru_Olxkcuc20swCsRrqDjZgrg"
 					}
 				],
 				"body": {
@@ -446,7 +425,7 @@
 				"header": [
 					{
 						"key": "Authorization",
-						"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1Mjk0NTYyNTUsImV4cCI6MTUzNDcyNjY1NSwianRpIjoibTVrVUoyblY5eGlGN1pFZUltamp0OEUxUWkzSDQ0QlZlUjhRenVhTXdCYSIsInN1YiI6Im5laWxAaW52ZW50by5pbyIsImlzcyI6ImdSMjNabzFFWDBrOGJQT2QifQ.nAdhs3cyHj_Akj28qNFa8P2Ip1PdYtEUNPUKqhmiUHY"
+						"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1Mjk1NjE4ODEsImV4cCI6MTUzNDgzMjI4MSwianRpIjoic21tVGdXeXl3NEFEa0R1TjBsUVZHcmdaeVVXRTE0N1d3aFdvSHdvUzZYQyIsInN1YiI6Im9SeUs1dlhoWEFrNlA4RmZsWm9GIiwiaXNzIjoiZ1IyM1pvMUVYMGs4YlBPZCIsInN1YmQiOiJNUSUzRCUzRCJ9.dJhk2PqmoIwHGFX4k4Ru_Olxkcuc20swCsRrqDjZgrg"
 					}
 				],
 				"body": {},

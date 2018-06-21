@@ -9,6 +9,7 @@ class AuthModel extends Model {
     protected $fillable = [
         'email',
         'password',
+        'id'
     ];
 }
 

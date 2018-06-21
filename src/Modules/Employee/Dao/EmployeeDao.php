@@ -25,6 +25,20 @@ class EmployeeDao {
         return ($qry) ? array('msg' => 'Employee Deleted Successfully! ('.$name.')', 'status' => true) : array('msg' => 'Error Encountered on Employee Deletion! ('.$name.')', 'status' => false);
     }
 
+    function checkIfUserIsActive($emp_id){
+        return EmployeeModel::select('is_active')
+                            ->where('id', '=', $emp_id)
+                            ->first()
+                            ->toArray();
+    }
+
+    function getUpdatedAt($emp_id){
+        return EmployeeModel::select('updated_at')
+                            ->where('id', '=', $emp_id)
+                            ->first()
+                            ->toArray();
+    }
+
     function getEmployee($emp_id){
          return EmployeeModel::select('first_name', 'middle_name', 'last_name', 'phone', 'email', 'address', 'pos_title', 'is_admin', 'created_at','updated_at', 'is_active')->where('id', $emp_id)->first();
     }
